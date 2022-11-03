@@ -9,6 +9,12 @@ import (
 	_ "nuxui.org/nuxui/ui"
 )
 
+func init(){
+
+        nux.RegisterType( (*Home)(nil), func(manifest nux.Attr) any { return NewHome(manifest) } )
+
+}
+
 func main() {
 	nux.App().Init(manifest)
 	nux.App().Run()

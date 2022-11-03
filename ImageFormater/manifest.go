@@ -8,11 +8,11 @@ const manifest = `
     },
 
     application: {
-        // display name at luancher 
-		label: hello,  
+        // display name at luancher
+		label: hello,
 
         // application identifier name
-        name: "org.nuxui.samples.hello",
+        name: "org.nuxui.samples.ImageFormater",
     },
 
     permissions: [
@@ -23,12 +23,11 @@ const manifest = `
     ],
 
     mainWindow: {
-        width: 15%,
-        height: 2:1,
+        width: 500px,
+        height: 1:1,
         title: "hello",
         content: {
-            type: nuxui.org/nuxui/ui.Text,
-			text: "Hello nuxui",
+            type: main.Home,
         },
         background: #ffffff,
     },
