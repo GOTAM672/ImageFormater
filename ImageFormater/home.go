@@ -66,6 +66,47 @@ layout: {
        width: 100%,
        height: 50%,
        background: #0000ff33,
+       children: [
+       {
+          type: ui.Row,
+          width: 100%,
+          children: [
+
+          {
+             type: ui.Text,
+             text: "Convert To:",
+
+
+          },{
+
+                type: ui.Options,
+                single: true,
+                content: {
+
+                      type: ui.Row,
+                      children: [
+
+                      {
+                          type: ui.Radio,
+                          text: bmp,
+                      },{
+                          type: ui.Radio,
+                          text: ico,
+                      },
+
+                      ],
+
+                },
+
+
+          }
+
+          ],
+
+
+       }
+
+       ],
 
     }
 
