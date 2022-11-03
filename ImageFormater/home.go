@@ -27,12 +27,42 @@ func NewHome(manifest nux.Attr) Home{
 
  me := &home{}
  me.ComponentBase = nux.NewComponentBase(me, manifest)
- nux.InflateLayout(me, me.layout(), nil)
+ nux.InflateLayout(me, me.layout(), nux.InflateStyle(me.style()))
  return me
 
 
 }
 
+func (me *home)style() string {
+
+
+    return `
+{
+        import: {
+
+               ui: nuxui.org/nuxui/ui,
+
+        }
+        style: {
+
+              radio: {
+
+                          type: ui.Radio,
+                          textColor: #000000,
+                          font: {size: 14},
+              }
+
+
+        }
+
+
+}
+
+    `
+
+
+
+}
 
 func (me *home)layout()string{
 
@@ -86,13 +116,8 @@ layout: {
                       type: ui.Row,
                       children: [
 
-                      {
-                          type: ui.Radio,
-                          text: bmp,
-                      },{
-                          type: ui.Radio,
-                          text: ico,
-                      },
+                          {style:[radio], text:bmp },
+                          {style:[radio], text:ico },
 
                       ],
 
