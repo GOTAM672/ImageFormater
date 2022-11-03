@@ -53,6 +53,24 @@ layout: {
     width: 100%,
     height: 100%,
     background: #00ff0033,
+    children: [
+
+    {
+       type: ui.Column,
+       width: 100%,
+       height: 50%,
+       background: #ff000033,
+    },{
+
+       type: ui.Column,
+       width: 100%,
+       height: 50%,
+       background: #0000ff33,
+
+    }
+
+    ],
+
 
 }
 
