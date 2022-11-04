@@ -88,6 +88,46 @@ func (me *home)layout()string{
                       width: 100%,
                       height: 50%,
                       background: #0000ff33,
+                      children: [
+                          {
+                               type: ui.Row,
+                               width: 100%,
+                               align: {vertical: center},
+                               children: [
+                                   {
+                                       type: ui.Text,
+                                       text: "Convert To:",
+                                   },{
+                                       type: ui.Options,
+                                       single: true,
+                                       content: {
+                                           type: ui.Column,
+                                           children: [
+                                               {
+                                                   type: ui.Row,
+                                                   children: [
+                                                   {style: [radio], text: bmp},
+                                                   {style: [radio], text: ico},
+                                                   {style: [radio], text: jpg},
+                                                   {style: [radio], text: png},
+                                                   {style: [radio], text: tif},
+                                                   ],
+
+                                               },{
+                                                   type: ui.Row,
+                                                   children: [
+                                                   {style: [radio], text: gif},
+                                                   {style: [radio], text: webp},
+                                                   {style: [radio], text: pcx},
+                                                   {style: [radio], text: tga},
+                                                   ],
+                                               }
+                                           ],
+                                       },
+                                   }
+                               ],
+                          }
+                      ],
                   }
               ],
           }
