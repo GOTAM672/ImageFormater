@@ -25,7 +25,7 @@ const manifest = `
     mainWindow: {
         width: 500px,
         height: 1:1,
-        title: "hello",
+        title: "Image Foramter",
         content: {
             type: main.Home,
         },

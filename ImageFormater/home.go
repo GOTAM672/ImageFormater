@@ -80,9 +80,28 @@ func (me *home)layout()string{
               children: [
                   {
                       type: ui.Column,
-                      width: 100%,
+                      width: 80%,
                       height: 50%,
-                      background: #ff000033,
+                      margin: {left: 1wt, right: 1wt },
+                      background: {
+                          type: ui.ShapeDrawable,
+                          shape: {
+                               name: rect,
+                               stroke: #d3d3d3,
+                               strokeWidth: 2px,
+                               cornerRadius: 20px,
+                               dash: [5, 5],
+                          },
+                      },
+                      children: [
+                          {
+                              type: ui.Image,
+                              src: "assets/images.jpeg",
+                          },{
+                              type: ui.Text,
+                              text: "Choose an image to convert",
+                          }
+                      ],
                   },{
                       type: ui.Column,
                       width: 100%,
