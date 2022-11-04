@@ -7,6 +7,7 @@ package main
 import (
 	"nuxui.org/nuxui/nux"
 	_ "nuxui.org/nuxui/ui"
+	"nuxui.org/nuxui/theme"
 )
 
 func init(){
@@ -16,6 +17,9 @@ func init(){
 }
 
 func main() {
+
+        nux.ApplyTheme(nux.ThemeLight, theme.BootstrapLight)
+
 	nux.App().Init(manifest)
 	nux.App().Run()
 }

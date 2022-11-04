@@ -171,6 +171,11 @@ func (me *home)layout()string{
                                        margin: {left: 20px},
                                    }
                                ],
+                          },{
+                               type: ui.Button,
+                               text: Convert,
+                               margin: {top: 20px, left: 1wt, right: 1wt},
+                               theme: [btn, btn_primary],
                           }
                       ],
                   }
