@@ -1,14 +1,14 @@
-# NuxUI Samples
+# Image Formater
 
-A collection of nuxui samples
 
-## Quick Start
+
+## How to build
 
 ```
-git clone https://github.com/nuxui/samples.git
-cd github.com/nuxui/samples/widgets
+git clone 
+cd ImageFormater
 go mod tidy
-go build . && ./widgets
+go build . && ./ImageFormater
 ```
 
 ## Screenshot
