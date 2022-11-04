@@ -4,6 +4,8 @@ import (
 
 
 "nuxui.org/nuxui/nux"
+"nuxui.org/nuxui/log"
+"nuxui.org/nuxui/ui"
 
 )
 
@@ -79,6 +81,7 @@ func (me *home)layout()string{
               padding: 20px,
               children: [
                   {
+                      id: pick_image,
                       type: ui.Column,
                       width: 80%,
                       height: 50%,
@@ -172,6 +175,7 @@ func (me *home)layout()string{
                                    }
                                ],
                           },{
+                               id: btn_convert,
                                type: ui.Button,
                                text: Convert,
                                margin: {top: 20px, left: 1wt, right: 1wt},
@@ -187,3 +191,26 @@ func (me *home)layout()string{
     `
 
 }
+
+func (me *home) OnMount(){
+
+     btn_convert := nux.FindChild(me, "btn_convert").(ui.Button)
+     pick_image := nux.FindChild(me, "pick_image")
+
+     nux.OnTap(pick_image, func(detail nux.GestureDetail){
+
+              nux.PickFileDialog().
+                  SetDirectory(".").
+                  ShowModal(func(ok bool,ret []string){
+
+                  })
+     })
+
+     nux.OnTap(btn_convert, func(detail nux.GestureDetail){
+
+              log.I("formater", "btn_convert taped")
+     })
+
+
+}
+
