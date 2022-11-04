@@ -201,8 +201,13 @@ func (me *home) OnMount(){
 
               nux.PickFileDialog().
                   SetDirectory(".").
+                  SetExtensionFilters(map[string][]string{
+                          "images": {"bmp", "ico", "jpg", "png", "tif", "gif", "webp", "pcx", "tga"},
+                  }).
+                  AllowsChooseFiles().
+                  AllowsCreateFolders().
                   ShowModal(func(ok bool,ret []string){
-
+                           log.I("formater", "%t, %s", ok, ret)
                   })
      })
 
