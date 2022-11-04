@@ -5,7 +5,7 @@
 ## How to build
 
 ```
-git clone 
+git clone https://github.com/GOTAM672/ImageFormater.git
 cd ImageFormater
 go mod tidy
 go build . && ./ImageFormater
@@ -13,4 +13,4 @@ go build . && ./ImageFormater
 
 ## Screenshot
 
-![](https://gitee.com/nuxui/website/raw/master/static/samples/screenshot_widgets.webp)
+![]()
