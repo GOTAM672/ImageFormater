@@ -21,6 +21,8 @@ type home struct{
 
 *nux.ComponentBase
 
+pickedFile string
+
 }
 
 
@@ -82,37 +84,53 @@ func (me *home)layout()string{
               children: [
                   {
                       id: pick_image,
-                      type: ui.Column,
-                      width: 80%,
+                      type: ui.Layer,
+                      width: 100%,
                       height: 50%,
-                      margin: {left: 1wt, right: 1wt },
-                      align: {horizontal: center},
-                      background: {
-                          type: ui.ShapeDrawable,
-                          shape: {
-                               name: rect,
-                               stroke: #d3d3d3,
-                               strokeWidth: 2px,
-                               cornerRadius: 20px,
-                               dash: [5, 5],
-                          },
-                      },
                       children: [
                           {
-                              type: ui.Image,
-                              width: 50px,
-                              height: 1:1,
-                              src: "assets/icon-add-new.png",
-                              margin: {top: 4wt, bottom: 3wt},
-                          },{
-                              type: ui.Text,
-                              text: "Choose an image to convert",
-                              font: {size: 15},
-                              textColor: #8b8b8b,
-                              margin: {bottom: 1wt},
-                          }
+
+                               type: ui.Column,
+                               width: 80%,
+                               height: 100%,
+                               margin: {left: 1wt, right: 1wt },
+                               align: {horizontal: center},
+                               background: {
+                                   type: ui.ShapeDrawable,
+                                   shape: {
+                                      name: rect,
+                                      stroke: #d3d3d3,
+                                      strokeWidth: 2px,
+                                      cornerRadius: 20px,
+                                      dash: [5, 5],
+                                   },
+                              },
+                              children: [
+                              {
+                                  type: ui.Image,
+                                  width: 50px,
+                                  height: 1:1,
+                                  src: "assets/icon-add-new.png",
+                                  margin: {top: 4wt, bottom: 3wt},
+                              },{
+                                  type: ui.Text,
+                                  text: "Choose an image to convert",
+                                  font: {size: 15},
+                                  textColor: #8b8b8b,
+                                  margin: {bottom: 1wt},
+                              }
+                              ],
+                      },{
+
+                          id: img_preview,
+                          type: ui.Image,
+                          width: 100%,
+                          height: 100%,
+
+                      }
                       ],
-                  },{
+                  },
+                  {
                       type: ui.Column,
                       width: 100%,
                       height: 50%,
@@ -194,6 +212,8 @@ func (me *home)layout()string{
 
 func (me *home) OnMount(){
 
+     img_preview := nux.FindChild(me, "img_preview").(ui.Image)
+
      btn_convert := nux.FindChild(me, "btn_convert").(ui.Button)
      pick_image := nux.FindChild(me, "pick_image")
 
@@ -208,6 +228,10 @@ func (me *home) OnMount(){
                   AllowsCreateFolders().
                   ShowModal(func(ok bool,ret []string){
                            log.I("formater", "%t, %s", ok, ret)
+                           if ok && len(ret)>0{
+                                 me.pickedFile = ret[0]
+                                 img_preview.SetSrc(me.pickedFile)
+                           }
                   })
      })
 
