@@ -182,6 +182,7 @@ func (me *home)layout()string{
                                        type: ui.Text,
                                        text: "Save To:",
                                    },{
+                                       id: txt_saveto,
                                        type: ui.Text,
                                        width: 57%,
                                        text: "/home/users",
@@ -215,7 +216,9 @@ func (me *home) OnMount(){
      img_preview := nux.FindChild(me, "img_preview").(ui.Image)
 
      btn_convert := nux.FindChild(me, "btn_convert").(ui.Button)
+     txt_saveto := nux.FindChild(me, "txt_saveto").(ui.Text)
      pick_image := nux.FindChild(me, "pick_image")
+
 
      nux.OnTap(pick_image, func(detail nux.GestureDetail){
 
@@ -231,6 +234,9 @@ func (me *home) OnMount(){
                            if ok && len(ret)>0{
                                  me.pickedFile = ret[0]
                                  img_preview.SetSrc(me.pickedFile)
+                                 img_preview.SetBackgroundColor(nux.White)
+
+                                 txt_saveto.SetText(me.pickedFile)
                            }
                   })
      })
