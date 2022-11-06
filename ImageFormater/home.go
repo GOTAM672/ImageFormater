@@ -7,6 +7,9 @@ import (
 "nuxui.org/nuxui/log"
 "nuxui.org/nuxui/ui"
 
+"path/filepath"
+"strings"
+
 )
 
 type Home interface{
@@ -22,6 +25,8 @@ type home struct{
 *nux.ComponentBase
 
 pickedFile string
+convertTo string
+saveTo string
 
 }
 
@@ -144,6 +149,7 @@ func (me *home)layout()string{
                                        type: ui.Text,
                                        text: "Convert To:",
                                    },{
+                                       id: options,
                                        type: ui.Options,
                                        single: true,
                                        content: {
@@ -217,6 +223,7 @@ func (me *home) OnMount(){
 
      btn_convert := nux.FindChild(me, "btn_convert").(ui.Button)
      txt_saveto := nux.FindChild(me, "txt_saveto").(ui.Text)
+     options := nux.FindChild(me, "options").(ui.Options)
      pick_image := nux.FindChild(me, "pick_image")
 
 
@@ -241,11 +248,37 @@ func (me *home) OnMount(){
                   })
      })
 
+     options.SetOnSelectionChanged(func(w ui.Options, fromUser bool){
+               if w.Selected(){
+                   me.convertTo = w.Values()[0]
+               }
+
+               if fromUser && me.pickedFile != ""{
+                   if w.Selected(){
+                        me.saveTo = filepath.Dir(me.pickedFile) + "/" +
+                             me.getFileBaseNameWidthoutExt(me.pickedFile) + "." + me.convertTo
+
+
+                        txt_saveto.SetText(me.saveTo)
+                   }
+               }
+     })
+
      nux.OnTap(btn_convert, func(detail nux.GestureDetail){
 
               log.I("formater", "btn_convert taped")
      })
 
+
+}
+
+func (me *home)getFileBaseNameWidthoutExt(filename string) string{
+
+               arr := strings.Split(filepath.Base(filename), filepath.Ext(filename))
+               if len(arr)>0{
+                  return arr[0]
+               }
+               return ""
 
 }
 
