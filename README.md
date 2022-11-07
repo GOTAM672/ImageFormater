@@ -5,10 +5,15 @@ This application is build with NuxUI(Golang GUI SDK) & Go programming language.
 
 
 
-### How to Install and Run the Project
+## How to Install and Run the Project
 
-#### Dependencies
+### Dependencies
+Following should be installed and added to path before Install and Run the Project
 
+1. Go Programming Language
+2. FFmpeg
+
+### Install and Run
 
 ```
 git clone https://github.com/GOTAM672/ImageFormater.git
