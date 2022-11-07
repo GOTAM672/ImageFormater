@@ -365,6 +365,16 @@ func (me *home) OnMount(){
                      nux.LoadNativeCursor(nux.CursorArrow).Set()
      })
 
+     nux.OnTap(txt_saveto, func(detail nux.GestureDetail){
+                     if me.saveTo != ""{
+                           nux.ViewFileDialog().
+                               SetDirectory(filepath.Dir(me.pickedFile)).
+                               SetActiveFileNames([]string{me.saveTo}).
+                               Show()
+
+                     }
+     })
+
 
 }
 
