@@ -5,7 +5,10 @@ This application is build with NuxUI(Golang GUI SDK) & Go programming language.
 
 
 
-## How to build
+## How to Install and Run the Project
+
+### Dependencies
+
 
 ```
 git clone https://github.com/GOTAM672/ImageFormater.git
