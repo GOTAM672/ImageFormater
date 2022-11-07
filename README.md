@@ -5,9 +5,9 @@ This application is build with NuxUI(Golang GUI SDK) & Go programming language.
 
 
 
-## How to Install and Run the Project
+### How to Install and Run the Project
 
-### Dependencies
+#### Dependencies
 
 
 ```
