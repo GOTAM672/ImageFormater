@@ -196,6 +196,7 @@ func (me *home)layout()string{
                                        text: "/home/users",
                                        margin: {left: 20px},
                                    },{
+                                       id: btn_change,
                                        type: ui.Button,
                                        text: Change,
                                        margin: {left: 20px},
@@ -229,6 +230,7 @@ func (me *home) OnMount(){
      img_preview := nux.FindChild(me, "img_preview").(ui.Image)
 
      btn_convert := nux.FindChild(me, "btn_convert").(ui.Button)
+     btn_change := nux.FindChild(me, "btn_change").(ui.Button)
      txt_saveto := nux.FindChild(me, "txt_saveto").(ui.Text)
      txt_info := nux.FindChild(me, "txt_info").(ui.Text)
      options := nux.FindChild(me, "options").(ui.Options)
@@ -321,6 +323,40 @@ func (me *home) OnMount(){
               }
      })
 
+     nux.OnTap(btn_change, func(detail nux.GestureDetail){
+              dir := txt_saveto.Text()
+              if me.pickedFile != ""{
+                    dir = filepath.Dir(me.pickedFile)
+              }
+
+              if !isDir(dir){
+                   dir = filepath.Dir(dir)
+              }
+
+              saveName := "untitled"
+
+
+              if me.convertTo != ""{
+                    if me.pickedFile != ""{
+                          saveName = me.getFileBaseNameWidthoutExt(me.pickedFile) + "." + me.convertTo
+                    }else{
+                         saveName = saveName + "." + me.convertTo
+                    }
+              }
+
+              nux.SaveFileDialog().
+                  SetDirectory(dir).
+                  SetSaveName(saveName).
+                  ShowModal(func(ok bool, ret string){
+                           if ok{
+                              me.saveTo = ret
+                              txt_saveto.SetText(ret)
+                           }
+                  })
+
+
+     })
+
 
 }
 
@@ -334,3 +370,12 @@ func (me *home)getFileBaseNameWidthoutExt(filename string) string{
 
 }
 
+func isDir(path string)bool{
+          fileInfo, err := os.Stat(path)
+
+          if err != nil{
+                 return false
+          }
+
+          return fileInfo.IsDir()
+}
