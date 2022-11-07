@@ -99,8 +99,8 @@ func (me *home)layout()string{
 
                                type: ui.Column,
                                width: 80%,
-                               height: 100%,
-                               margin: {left: 1wt, right: 1wt,},
+                               height: 98%,
+                               margin: {left: 1wt, right: 1wt, top: 2px},
                                align: {horizontal: center},
                                background: {
                                    type: ui.ShapeDrawable,

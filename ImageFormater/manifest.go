@@ -23,8 +23,8 @@ const manifest = `
     ],
 
     mainWindow: {
-        width: 550px,
-        height: 2:2,
+        width: 500px,
+        height: 1:1,
         title: "Image Foramter",
         content: {
             type: main.Home,
