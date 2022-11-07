@@ -248,7 +248,7 @@ func (me *home) OnMount(){
               nux.PickFileDialog().
                   SetDirectory(".").
                   SetExtensionFilters(map[string][]string{
-                          "images": {"bmp", "ico", "jpg", "png", "tif", "gif", "webp", "pcx", "tga"},
+                          "images": {"bmp", "ico", "jpg", "jpeg", "png", "tif", "tiff", "gif", "webp", "pcx", "tga"},
                   }).
                   AllowsChooseFiles().
                   AllowsCreateFolders().
@@ -310,7 +310,7 @@ func (me *home) OnMount(){
                     return
               }
 
-              cmd := exec.Command("./ffmpeg", "-i", me.pickedFile, me.saveTo)
+              cmd := exec.Command("/usr/bin/ffmpeg", "-i", me.pickedFile, me.saveTo)
               err := cmd.Run()
               if err != nil{
 
