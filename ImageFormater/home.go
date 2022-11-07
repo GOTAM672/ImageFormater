@@ -9,6 +9,7 @@ import (
 
 "path/filepath"
 "strings"
+"os"
 
 )
 
@@ -98,7 +99,7 @@ func (me *home)layout()string{
                                type: ui.Column,
                                width: 80%,
                                height: 100%,
-                               margin: {left: 1wt, right: 1wt},
+                               margin: {left: 1wt, right: 1wt,},
                                align: {horizontal: center},
                                background: {
                                    type: ui.ShapeDrawable,
@@ -205,6 +206,11 @@ func (me *home)layout()string{
                                text: Convert,
                                margin: {top: 20px, left: 1wt, right: 1wt},
                                theme: [btn, btn_primary],
+                          },{
+                               id: txt_info,
+                               type: ui.Text,
+                               margin: {top: 20px},
+
                           }
                       ],
                   }
@@ -223,8 +229,15 @@ func (me *home) OnMount(){
 
      btn_convert := nux.FindChild(me, "btn_convert").(ui.Button)
      txt_saveto := nux.FindChild(me, "txt_saveto").(ui.Text)
+     txt_info := nux.FindChild(me, "txt_info").(ui.Text)
      options := nux.FindChild(me, "options").(ui.Options)
      pick_image := nux.FindChild(me, "pick_image")
+
+     dir, err := os.UserHomeDir()
+     if err != nil{
+        dir, _ = filepath.Abs(".")
+     }
+     txt_saveto.SetText(dir)
 
 
      nux.OnTap(pick_image, func(detail nux.GestureDetail){
@@ -243,7 +256,15 @@ func (me *home) OnMount(){
                                  img_preview.SetSrc(me.pickedFile)
                                  img_preview.SetBackgroundColor(nux.White)
 
-                                 txt_saveto.SetText(me.pickedFile)
+
+                                 if me.convertTo == ""{
+                                    txt_saveto.SetText(filepath.Dir(me.pickedFile))
+                                 }else{
+                                      me.saveTo = filepath.Dir(me.pickedFile) + "/" + me.getFileBaseNameWidthoutExt(me.pickedFile) + "." + me.convertTo
+                                      txt_saveto.SetText(me.saveTo)
+
+                                 }
+
                            }
                   })
      })
@@ -260,13 +281,31 @@ func (me *home) OnMount(){
 
 
                         txt_saveto.SetText(me.saveTo)
-                   }
+                   }else{
+
+                                me.saveTo = ""
+                                txt_saveto.SetText(filepath.Dir(me.pickedFile) + "/" + me.getFileBaseNameWidthoutExt(me.pickedFile))
+
+
+                           }
                }
      })
 
      nux.OnTap(btn_convert, func(detail nux.GestureDetail){
 
-              log.I("formater", "btn_convert taped")
+              //log.I("formater", "btn_convert taped")
+              if me.pickedFile == ""{
+                    txt_info.SetTextColor(nux.Red)
+                    txt_info.SetText("Please choose an image file")
+                    return
+              }
+
+              if me.saveTo == "" || me.convertTo == ""{
+
+                    txt_info.SetTextColor(nux.Red)
+                    txt_info.SetText("Please choose convert to")
+                    return
+              }
      })
 
 
