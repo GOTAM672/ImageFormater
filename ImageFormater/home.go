@@ -357,6 +357,14 @@ func (me *home) OnMount(){
 
      })
 
+     nux.OnHoverEnter(txt_saveto, func(detail nux.GestureDetail){
+                     nux.LoadNativeCursor(nux.CursorFinger).Set()
+     })
+
+     nux.OnHoverExit(txt_saveto, func(detail nux.GestureDetail){
+                     nux.LoadNativeCursor(nux.CursorArrow).Set()
+     })
+
 
 }
 
