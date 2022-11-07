@@ -10,6 +10,7 @@ import (
 "path/filepath"
 "strings"
 "os"
+"os/exec"
 
 )
 
@@ -305,6 +306,18 @@ func (me *home) OnMount(){
                     txt_info.SetTextColor(nux.Red)
                     txt_info.SetText("Please choose convert to")
                     return
+              }
+
+              cmd := exec.Command("./ffmpeg", "-i", me.pickedFile, me.saveTo)
+              err := cmd.Run()
+              if err != nil{
+
+                    txt_info.SetTextColor(nux.Red)
+                    txt_info.SetText(err.Error())
+                    return
+              }else {
+                    txt_info.SetTextColor(nux.Green)
+                    txt_info.SetText("Convert Successed")
               }
      })
 
