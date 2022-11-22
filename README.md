@@ -3,7 +3,9 @@
 It is a simple GUI based application which convert the Image file extensions form one to another with the help of FFmpeg.
 This application is build with NuxUI(Golang GUI SDK) & Go programming language.
 
-
+## What I Learned 
+1. Learned Go Programming.
+2. Learned NuxUI GUI.
 
 ## How to Install and Run the Project
 
