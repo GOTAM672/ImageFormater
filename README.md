@@ -5,7 +5,7 @@ This application is build with NuxUI(Golang GUI SDK) & Go programming language.
 
 ## What I Learned 
 1. Learned Go Programming.
-2. Learned NuxUI GUI.
+2. Learned [NuxUI](https://nuxui.org/) GUI.
 
 ## How to Install and Run the Project
 
