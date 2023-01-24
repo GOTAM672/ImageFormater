@@ -31,7 +31,7 @@ go build . && ./ImageFormater
 ## Error Handling
 
 I you got an error related to FFmpeg as given below...   
-Then replace `"/usr/bin/ffmpeg"` with the path of FFmpeg installed in your system.
+Then replace `"/usr/bin/ffmpeg"` with the path of FFmpeg installed in your system [Here](https://github.com/GOTAM672/ImageFormater/blob/13ba5c6844d64387a7b89a74f7fbfd00e850d23d/ImageFormater/home.go#L276).
 
 ![](./screenshot/error.png)
 
