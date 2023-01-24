@@ -1,140 +1,103 @@
 package main
 
 import (
-
-
-"nuxui.org/nuxui/nux"
-"nuxui.org/nuxui/log"
-"nuxui.org/nuxui/ui"
-
-"path/filepath"
-"strings"
-"os"
-"os/exec"
+  "nuxui.org/nuxui/nux"
+  "nuxui.org/nuxui/log"
+  "nuxui.org/nuxui/ui"
+  "path/filepath"
+  "strings"
+  "os"
+  "os/exec"
 
 )
 
 type Home interface{
-
-
-nux.Component
-
+  nux.Component
 }
 
 type home struct{
-
-
-*nux.ComponentBase
-
-pickedFile string
-convertTo string
-saveTo string
-
+  *nux.ComponentBase
+  pickedFile string
+  convertTo string
+  saveTo string
 }
 
 
 func NewHome(manifest nux.Attr) Home{
-
-
- me := &home{}
- me.ComponentBase = nux.NewComponentBase(me, manifest)
- nux.InflateLayout(me, me.layout(), nux.InflateStyle(me.style()))
- return me
-
-
+  me := &home{}
+  me.ComponentBase = nux.NewComponentBase(me, manifest)
+  nux.InflateLayout(me, me.layout(), nux.InflateStyle(me.style()))
+  return me
 }
 
 func (me *home)style() string {
+  return `{
 
-
-    return `
-{
-        import: {
-
-               ui: nuxui.org/nuxui/ui,
-
-        }
-        style: {
-
-              radio: {
-
-                          type: ui.Radio,
-                          textColor: #000000,
-                          font: {size: 14},
-              }
-
-
-        }
-
-
-}
-
-    `
-
-
-
+  import: {
+    ui: nuxui.org/nuxui/ui,
+  }
+  style: {
+    radio: {
+      type: ui.Radio,
+      textColor: #000000,
+      font: {size: 14},
+    }
+  }
+}`
 }
 
 func (me *home)layout()string{
-
-    return `
-    {
-          import: {
-              ui: nuxui.org/nuxui/ui,
-          }
-
-          layout: {
-              type: ui.Column,
-              width: 100%,
-              height: 100%,
-              padding: 20px,
-              children: [
-                  {
-                      id: pick_image,
-                      type: ui.Layer,
-                      width: 100%,
-                      height: 50%,
-                      children: [
-                          {
-
-                               type: ui.Column,
-                               width: 80%,
-                               height: 98%,
-                               margin: {left: 1wt, right: 1wt, top: 2px},
-                               align: {horizontal: center},
-                               background: {
-                                   type: ui.ShapeDrawable,
-                                   shape: {
-                                      name: rect,
-                                      stroke: #d3d3d3,
-                                      strokeWidth: 2px,
-                                      cornerRadius: 20px,
-                                      dash: [5, 5],
-                                   },
-                              },
-                              children: [
-                              {
-                                  type: ui.Image,
-                                  width: 50px,
-                                  height: 1:1,
-                                  src: "assets/icon-add-new.png",
-                                  margin: {top: 4wt, bottom: 3wt},
-                              },{
-                                  type: ui.Text,
-                                  text: "Choose an image to convert",
-                                  font: {size: 15},
-                                  textColor: #8b8b8b,
-                                  margin: {bottom: 1wt},
-                              }
-                              ],
-                      },{
-
+  return `
+  {
+    import: {
+      ui: nuxui.org/nuxui/ui,
+    }
+    layout: {
+      type: ui.Column,
+      width: 100%,
+      height: 100%,
+      padding: 20px,
+      children: [{
+                id: pick_image,
+                type: ui.Layer,
+                width: 100%,
+                height: 50%,
+                children: [{
+                          type: ui.Column,
+                          width: 80%,
+                          height: 98%,
+                          margin: {left: 1wt, right: 1wt, top: 2px},
+                          align: {horizontal: center},
+                          background: {
+                            type: ui.ShapeDrawable,
+                            shape: {
+                              name: rect,
+                              stroke: #d3d3d3,
+                              strokeWidth: 2px,
+                              cornerRadius: 20px,
+                              dash: [5, 5],
+                            },
+                          },
+                          children: [{
+                                    type: ui.Image,
+                                    width: 50px,
+                                    height: 1:1,
+                                    src: "assets/icon-add-new.png",
+                                    margin: {top: 4wt, bottom: 3wt},
+                                  },{
+                                    type: ui.Text,
+                                    text: "Choose an image to convert",
+                                    font: {size: 15},
+                                    textColor: #8b8b8b,
+                                    margin: {bottom: 1wt},
+                                  }
+                          ],
+                        },{
                           id: img_preview,
                           type: ui.Image,
                           width: 100%,
                           height: 100%,
-
-                      }
+                        }
                       ],
                   },
                   {
