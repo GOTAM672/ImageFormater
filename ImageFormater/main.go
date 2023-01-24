@@ -11,15 +11,11 @@ import (
 )
 
 func init(){
-
-        nux.RegisterType( (*Home)(nil), func(manifest nux.Attr) any { return NewHome(manifest) } )
-
+  nux.RegisterType( (*Home)(nil), func(manifest nux.Attr) any { return NewHome(manifest) } )
 }
 
 func main() {
-
-        nux.ApplyTheme(nux.ThemeLight, theme.BootstrapLight)
-
-	nux.App().Init(manifest)
-	nux.App().Run()
+  nux.ApplyTheme(nux.ThemeLight, theme.BootstrapLight)
+  nux.App().Init(manifest)
+  nux.App().Run()
 }
