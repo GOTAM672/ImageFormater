@@ -19,7 +19,7 @@ Following should be installed and added to path before Install and Run the Proje
 
 ```
 git clone https://github.com/GOTAM672/ImageFormater.git
-cd ImageFormater
+cd ImageFormater/ImageFormater
 go mod tidy
 go build . && ./ImageFormater
 ```
@@ -27,4 +27,11 @@ go build . && ./ImageFormater
 ## Screenshot
 
 ![](./screenshot/Screenshot.png)
+
+## Error Handling
+
+I you got an error related to FFmpeg as given below...   
+Then replace `"/usr/bin/ffmpeg"` with the path of FFmpeg installed in your system.
+
+![](./screenshot/error.png)
 
