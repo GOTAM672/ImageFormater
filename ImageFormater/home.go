@@ -342,21 +342,18 @@ func (me *home) OnMount(){
 }
 
 func (me *home)getFileBaseNameWidthoutExt(filename string) string{
-
-               arr := strings.Split(filepath.Base(filename), filepath.Ext(filename))
-               if len(arr)>0{
-                  return arr[0]
-               }
-               return ""
-
+  arr := strings.Split(filepath.Base(filename), filepath.Ext(filename))
+  if len(arr)>0{
+    return arr[0]
+  }
+  return ""
 }
 
 func isDir(path string)bool{
-          fileInfo, err := os.Stat(path)
+  fileInfo, err := os.Stat(path)
 
-          if err != nil{
-                 return false
-          }
-
-          return fileInfo.IsDir()
+  if err != nil{
+    return false
+  }
+  return fileInfo.IsDir()
 }
